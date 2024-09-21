@@ -1,3 +1,5 @@
+import static java.lang.Math.pow;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -6,6 +8,8 @@ public class Main {
         System.out.println(inverte_tail("qwerty", ""));
 
         System.out.println(prod(10,4,0));
+
+        System.out.println(converter("12345", 0));
 
     }
 
@@ -49,6 +53,16 @@ public class Main {
 
         return a[index] + sum_a_helper(a,index - 1);
     }
+
+    public static int converter (String str, int num){
+        if (str.isEmpty()) {
+            return num;
+        }
+        num = num + (int) ((str.charAt(0) - '0')* Math.pow(10, str.length() - 1));
+
+        return converter (str.substring(1), num);
+    }
+
 
 
 }
