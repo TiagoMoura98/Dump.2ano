@@ -1,3 +1,5 @@
+import java.util.*;
+
 import static java.lang.Math.pow;
 
 public class Main {
@@ -63,6 +65,46 @@ public class Main {
         return converter (str.substring(1), num);
     }
 
+    public Map <String, List<Integer>> footWorldCup (List<Map.Entry<Integer,String>> lf){
+
+        if(lf == null){ return null;}
+
+        Map <String,List<Integer>> mapWc = new HashMap<>();
+
+        for (Map.Entry<Integer,String> pair : lf ){
+
+            List<Integer> lst = mapWc.get(pair.getValue());
+
+            if (lst == null){
+                lst = new LinkedList<>();
+            }
+
+            lst.add(pair.getKey());
+            mapWc.put(pair.getValue(),lst);
+        }
+
+        for(List<Integer> lst : mapWc.values()){
+            Collections.sort(lst,Collections.reverseOrder());
+        }
+       return mapWc;
+    }
+
+    public LinkedList<Integer> CatCMMS (LinkedList<Integer> serie, Integer period){
+
+        if (serie == null){ return null;}
+
+        if(period == 0 || period > serie.size()){return null;}
+
+        LinkedList<Integer> mms = new LinkedList<>();
+        LinkedList<Integer> buffer = new LinkedList<>();
+        Integer sum = 0;
+
+        for(Integer num : serie){
+            buffer.add();
+        }
+
+        return mms;
+    }
 
 
 }
