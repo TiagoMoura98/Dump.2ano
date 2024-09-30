@@ -100,11 +100,17 @@ public class Main {
         Integer sum = 0;
 
         for(Integer num : serie){
-            buffer.add();
+            buffer.add(num);
+            sum += num;
+            if(buffer.size()<period){
+                mms.add(0);
+            }
         }
 
         return mms;
     }
+
+    
 
 
 }
