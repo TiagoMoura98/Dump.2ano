@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="esinf_data">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/ESINF/Data/esinf_data.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
