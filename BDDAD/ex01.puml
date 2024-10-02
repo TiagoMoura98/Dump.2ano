@@ -1,0 +1,54 @@
+@startuml
+'Reavaliar o modelo do exercício 1
+class Discografica {
+    + String nome
+}
+class Instrumento {
+    + Int codInstrumento
+    + String tipo
+    + String nome
+}
+class Musico {
+    + String nome
+    + String morada
+    + Int codMorada
+}
+class Morada {
+    + Int codMorada
+    + String localidade
+    + String codigoPostal
+}
+class Album {
+    + Int codAlbum
+    + String titulo
+    + String dataGravacao
+    + String formato
+    + String dataLancamento
+}
+class Musica {
+    + Int codMusica
+    + Int codAlbum
+    + String titulo
+}
+class Tocar {
+    + Int codMusico
+    + Int codInstrumento
+    + String tocaDesde
+}
+class Participar {
+    + Int codMusico
+    + Int codMusica
+}
+
+Album "1" ---left "*" Musica
+Discografica "1" ---left "*" Album
+Instrumento "1" ---down "*" Tocar
+Musica "1" ---up "*" Participar
+Musico "1" --- "*" Participar
+Musico "1" --- "*" Discografica
+Musico "1" ---up "*" Tocar
+Musico "1" --- "*" Album
+Musico "*" ---up "1" Morada
+
+
+@enduml
