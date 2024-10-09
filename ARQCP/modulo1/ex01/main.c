@@ -84,20 +84,42 @@ int main()
     printf("6: %p,%d,%d\n", ptr_vec, *ptr_vec, a);
     // prints the address of the first index, the value stored there which is 10 , and then the value of a which is 11
     ptr_vec = vec;
-    // unnacessary instruction because the pointer was already pointing to the address of vec
+    // a is equal to the value pointed by ptr_vec after ++ which means is now pointing to the second index
     a = *++ptr_vec;
-    // 
     printf("7: %p,%d,%d\n", ptr_vec, *ptr_vec, a);
+    // ptr_vec = the first value of vec 
     ptr_vec = vec;
+    // stores in a the value pointed by ptr_vec after incrementing 1 to the value
     a = ++*ptr_vec;
     printf("8: %p,%d,%d\n", ptr_vec, *ptr_vec, a);
     printf("\n");
+    //goes trought the whole vec 
     for (ptr_vec = vec; ptr_vec < vec + 4; ptr_vec++)
     {
+        // prints the address of the index we are pointing at and the value stored in that address
         printf("9: %p,%d\t", ptr_vec, *ptr_vec);
     }
 
-    //
+    printf("\n");
+    unsigned int d = 0xAABBCCDD;
+    //prints the address of var d and then the value store by it
+    printf("10: %p,%x\t", &d, d);
+    printf("\n");
+    // ptr_d is pointing to the address of d
+    // but its a char pointer while the value stored in the address is an integer
+    unsigned char *ptr_d = (unsigned char *)&d;
+    // declaration of a new pointer p
+    unsigned char *p;
+    // the ppointer p is now equal to the address of the var D
+    // while this value is not superior to the address plus the size of an unsigned int (4bytes)
+    // we increment 1 to the pointer, but since is a char it increments 1 byte each time
+    for (p = ptr_d; p < ptr_d + sizeof(unsigned int); p++)
+    {
+        // is printing the address stored in p, which means we are going trough all the bytes of the int store in d
+        // then we print the value pointed by it , which will be DD, CC, BB, AA
+        printf("11: %p,%x\t", p, (unsigned char)*p);
 
-    return 0;
+    }
+
+            return 0;
 }
