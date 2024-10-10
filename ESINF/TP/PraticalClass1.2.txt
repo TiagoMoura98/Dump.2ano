@@ -1,0 +1,44 @@
+private static int move(int a[], int i) { 
+    if (i >= a.length-1) return a.length-1;
+    if (a[i+1]<a[i]) return i;
+        return move(a, i+1);
+}
+private static int process(int a[], int i, int j) { 
+    if (i >= a.length - 1) return j;
+    int ni = move(a, i);
+    int nj = ni - i + 1;
+    return process(a, ni+1, (nj > j ? nj : j));
+}
+public static int method(int a[]) { 
+    return process(a,0,0);
+}
+process (a, 0, 0)
+    ni= move (a,0)
+        ni= move (1a,1)
+        ni=1
+        nj=1-0+1=2
+    process (a,2,2)
+        ni= move (a,2)
+            ni= move (a,3)
+            ni=3
+            nj=3-2+1=2
+        process (a,3,2)
+            ni= move (a,3)
+            ni=3
+            nj=3-2+1=1
+        process (a,7,2)
+            ni= move (a,7)
+            ni=7
+            nj=7-4+1=4
+        process (a,8,4)
+            ni= move (a,8)
+            ni=8
+            nj=8-4+1=2
+
+//1. Consider the following code: Explain what method is supposed to do and present the result of method applied to the array { 1, 7, 6,
+//10, 3, 5, 8, 12 }.
+// 2. Develop recursive methods that permit:
+//a) Verify if an element exists in an uni-dimensional array.
+//b) Write a recursive method to compute the sum of an integer's digits.
+//c) Calculate the sum of all the elements in an two-dimensional array.
+//d) Write a recursive function that that verifies if a word is palindrome.
