@@ -1,0 +1,16 @@
+public int sumDigits (int num){
+    if (num < 10)
+        return num;
+    return num % 10 + sumDigits(num / 10);
+}
+
+private int sumVset (int []a, int elem, int i){
+    if (i ==0)
+        return a[i];
+    return a[i] + sumVset(a, elem, i-1);
+}
+public int sumMatrix (int [][] mat, int l){
+    if (l == mat[0].length-1)
+        return sumVset(mat[0], mat[0].length-1);
+    return sumVset(mat[l], mat[l].length-1) + sumMatrix(mat,mat.length-1);
+}

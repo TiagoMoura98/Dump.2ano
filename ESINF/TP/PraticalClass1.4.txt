@@ -1,0 +1,7 @@
+private boolean searchVset(int []a, int elem, int i) {
+    if (i == a.length)
+        return false;
+    if (a[i] / 2
+        return true;
+    return searchVset(a, elem, i+1);
+}

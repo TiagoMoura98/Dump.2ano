@@ -1,0 +1,60 @@
+@startuml
+'Reavaliar o modelo do exercício 2
+class Professor {
+    + Int codProfessor
+    + String cartaoCidadao
+    + String nome
+    + String acronimo
+    + Date dataNascimento
+    + String categoria
+    + String areaInvestigacao
+}
+class Projeto {
+class Projeto {
+    + Int codProjeto
+    + Int numero
+    + String dataInicio
+    + String dataFim
+    + String entidadeFinanciadora
+    + String descricao
+    + String orcamento
+}
+class Aluno {
+    + Int codAluno
+    + Int numero
+    + String nome
+    + String cartaoCidadao
+    + Date dataNascimento
+    + String grau
+}
+class Departamento{
+    + Int codDepartamento
+    + String sigla
+    + String sala
+}
+
+class Gerir {
+    + Int codProfessor
+    + Int codProjeto
+    + String funcao
+}
+class Trabalhar{
+    + Int codAluno
+    + Int codProfessor
+    + String funcao
+}
+
+
+Projeto "1" ---right "*" Professor
+Projeto "1" --- "*" Gerir
+Professor "1" --- "*" Gerir
+Projeto "1" --- "*" Trabalhar
+Professor "1" --- "*" Trabalhar
+Aluno "1" ---left "*" Trabalhar
+Departamento "1"  ---right "1" Professor
+Aluno "*" ---left "1" Departamento
+Departamento "1" --- "*" Trabalhar
+Aluno "1" --- "*" Aluno
+
+
+@enduml
