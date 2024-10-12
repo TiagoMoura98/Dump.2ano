@@ -1,6 +1,6 @@
 # Variables
 INCLUDES = 
-SOURCES = main.c 
+SOURCES = main.c
 OBJFILES = main.o
 EXEC = prog
 
