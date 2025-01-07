@@ -1,0 +1,31 @@
+void frequencies(float *grades, int n, int *freq){
+
+    // array onde vao ser colocadas as grades so com o valor inteiro
+    int arr [n];
+    int counter = 0;
+    //transformamos as grades todas em so valores inteiros
+    for (int p = 0; p < n; p++)
+    {
+        arr[p] = (int) *grades;
+        ++grades;
+    }
+
+    // aproveitamos o size que conhecemos de freq para percorrer o mesmo
+    for (int i = 0; i <= 20; i++)
+    {
+        //percorremos o array das notas que criamos para contar quantas vezes existe cada nota
+        for (int j = 0; j < n; j++)
+        {   
+            // aproveitamos o iterador para comparar o valor da nota
+            if(arr[j] == i){
+                counter++;
+            }
+        }
+        // depois de "contar" guardamos o seu valor na posicao do array freq
+        *freq = counter;
+        ++freq;
+        // reset do counter para usarmos noutra nota
+        counter = 0;
+    }
+
+}

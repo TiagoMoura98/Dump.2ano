@@ -1,0 +1,36 @@
+# Variables 
+INCLUDES = asm.h
+SOURCES = main.c 
+OBJFILES = asm.o main.o 
+EXEC = prog.bin
+
+# Suffix rules 
+.SUFFIXES : .c .o
+.SUFFIXES : .s .o
+
+MSG = $(msg)
+
+# How to build an object .o from a code file .c ; $< -- file name 
+CP = gcc -g -Wall -Wextra -fanalyzer -z noexecstack -ln $<main.c
+
+.c.o:
+	gcc $(CP) -c $<
+
+.s.o:
+	gcc $(CP) -c $<asm.s
+
+# How to build the executable from object files
+${EXEC}: ${OBJFILES}
+	gcc ${OBJFILES} -o ${EXEC}
+
+# Run the program 
+run: ${EXEC}
+	./${EXEC}
+	
+# Clean up generated files 
+clean:
+	rm -f ${OBJFILES} ${EXEC}
+
+# Debug 
+debug: ${EXEC}
+	 ddd ${EXEC} &

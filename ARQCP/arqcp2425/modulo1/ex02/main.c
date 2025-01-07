@@ -10,6 +10,6 @@ int main() {
 
     // Call the sum function and print the result
     printf("Sum of %d and %d is: %d\n", x, y, sum(x, y));
-
+    
     return 0;
 }

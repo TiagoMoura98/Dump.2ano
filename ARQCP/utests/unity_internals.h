@@ -241,25 +241,16 @@
 #endif
 typedef UNITY_FLOAT_TYPE UNITY_FLOAT;
 
-/* isnan macro should be provided by math.h. Override if not macro */
-#ifndef UNITY_IS_NAN
+/* isinf & isnan macros should be provided by math.h */
+#ifndef isinf
+/* The value of Inf - Inf is NaN */
+#define isinf(n) (isnan((n) - (n)) && !isnan(n))
+#endif
+
 #ifndef isnan
 /* NaN is the only floating point value that does NOT equal itself.
  * Therefore if n != n, then it is NaN. */
-#define UNITY_IS_NAN(n) ((n != n) ? 1 : 0)
-#else
-#define UNITY_IS_NAN(n) isnan(n)
-#endif
-#endif
-
-/* isinf macro should be provided by math.h. Override if not macro */
-#ifndef UNITY_IS_INF
-#ifndef isinf
-/* The value of Inf - Inf is NaN */
-#define UNITY_IS_INF(n) (UNITY_IS_NAN((n) - (n)) && !UNITY_IS_NAN(n))
-#else
-#define UNITY_IS_INF(n) isinf(n)
-#endif
+#define isnan(n) ((n != n) ? 1 : 0)
 #endif
 
 #endif
@@ -768,24 +759,12 @@ extern const char UnityStrErrShorthand[];
  * Test Running Macros
  *-------------------------------------------------------*/
 
-#ifdef UNITY_TEST_PROTECT
-#define TEST_PROTECT() UNITY_TEST_PROTECT()
-#else
 #ifndef UNITY_EXCLUDE_SETJMP_H
 #define TEST_PROTECT() (setjmp(Unity.AbortFrame) == 0)
-#else
-#define TEST_PROTECT() 1
-#endif
-#endif
-
-#ifdef UNITY_TEST_ABORT
-#define TEST_ABORT() UNITY_TEST_ABORT()
-#else
-#ifndef UNITY_EXCLUDE_SETJMP_H
 #define TEST_ABORT() longjmp(Unity.AbortFrame, 1)
 #else
+#define TEST_PROTECT() 1
 #define TEST_ABORT() return
-#endif
 #endif
 
 /* Automatically enable variadic macros support, if it not enabled before */
